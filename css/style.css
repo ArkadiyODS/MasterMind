@@ -1,0 +1,32 @@
+.middle {
+	position: relative;
+    width: 100%;
+    margin: auto; 
+    padding: 10px; 
+}
+.middle div {
+	float: left;
+}
+.main{
+	position: relative;
+    width: 100%;
+    margin: auto; 
+    padding: 10px; 
+} 
+h1{ 
+	color: blue;
+	margin: auto;
+	text-align: center;
+} 
+select{
+	margin-left:  5px;
+}
+button{
+	margin-left: 10px;
+}
+#codePlace{
+	margin: auto; 
+}
+body{
+	font-family: Arial, sans-serif;
+}

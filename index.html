@@ -1,1 +1,68 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/patternMatcher.js"></script>
+<script src="js/randomiser.js"></script>
+<script src="js/setCreator.js"></script>
+<script src="js/setReducer.js"></script>
+<script src="js/knuthAlgorithm.js"></script>
+</head>
+<body>
+<h1>MASTERMIND</h1> 
+<div class="middle">
+	<div><b>Please select the code: </b></div>  
+	<div id='codePlace'></div>  
+  <button type="button" onclick="StartGame()">START</button>
+  <button type="button" onclick="CleanField()">CLEAN</button>
+</div>
+<div class="main"></div>   
+<div class="footer">
+	<a href="tests/Test.html" target="_blank">Tests</a>
+</div>   
+ 
+ <script> 
+	// Start function. Creates 4 select tag  with options (numbers from 1 to 6)
+	$(function(){
+		for (var i = 1; i <= 4 ; i++) {
+			var element = $('<select></select>');
+		 	element.attr('id', i + 'digit'); 
+			for (var j = 1; j <= 6 ; j++) {
+				var option = $('<option></option>')
+				option.text(j);
+				element.append(option)
+			}
+			$('#codePlace').append(element);
+		} 
+	});
+
+	 // Function uses KnuthAlgorithm to choose right guess withing minimum amount of attempts. 
+	 function StartGame(){ 
+	 	var code = parseInt($('select :selected').text());
+	 	if(isNaN(code))
+	 		return; 
+	 	var result = KnuthAlgorithm(code, 10);
+	 	ShowResults(result); 
+	 }
+
+	  function CleanField(){ 
+	 	 $('.main').children().remove();
+	 }
+
+	 function ShowResults(result){  
+	 	var attempt = 1;
+		for (var i = 0; i < result.allGuesses.length ; i++) { 
+			var row = $('<p></p>');
+			row.text('Attempt: ' + attempt++ + '	Guess: ' + result.allGuesses[i].guess + '   	Feedback: '+ result.allGuesses[i].pattern.B  +' Black and ' + result.allGuesses[i].pattern.W + ' White');
+			$('.main').append(row);
+		}
+		var row = $('<p></p>');
+		row.text('Attempt: ' + result.attempt + '	Guess: ' + result.guess);
+		$('.main').append(row);
+		$('.main').append('<hr>');
+	 }
+ </script>
+</body>
+</html>
