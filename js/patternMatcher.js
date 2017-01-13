@@ -23,13 +23,18 @@ function PatternMatcher(code, guess){
         pattern.B++;
         codeArr.splice(i, 1);
       }
-      else remains[digit] = true;
+      else remainsArr.push(digit);
   }
 
-  for (var j = 0; j < codeArr.length ; j++) {
-    if(remains[codeArr[j]])
-      pattern.W++;
-  }
+  for (var j = 0; j < remainsArr.length ; j++) {
+       for (var i = codeArr.length - 1; i >= 0; i--) {
+         if(codeArr[i] == remainsArr[j]){
+          pattern.W++;
+          codeArr.splice(i, 1);
+          break;
+         }
+       }
+    }
 
   return pattern;
 }
