@@ -51,6 +51,11 @@ describe("SetCreator", function() {
 
 describe("PatternMatcher", function() {
 
+ it("Function receives code '1214' and guess '2351', the correct pattern is 0B and 2W", function() {
+    var p = PatternMatcher(1214, 2351);
+    assert(p.B == 0 && p.W == 2);
+  });
+  
   it("Function receives code '1234' and guess '1122', the correct pattern is 1B and 1W", function() {
     var p = PatternMatcher(1234, 1122);
     assert(p.B == 1 && p.W == 1);
